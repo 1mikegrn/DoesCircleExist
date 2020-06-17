@@ -1,13 +1,15 @@
-from setuptools import setup, Extension, find_packages
+# from distutils.core import 
+from setuptools import find_packages, setup, Extension
 from os import path
-import glob
 
 here = path.abspath(path.dirname(__file__))
-files = [path.split(x)[1] for x in glob.glob(path.join(here, '**.c'))]
 
-extensions = [Extension(
-    path.splitext(x)[0], [x]
-) for x in files]
+extensions = [
+    Extension(
+    'DoesCircleExist.tools.cExt', 
+    [path.join('DoesCircleExist', 'tools', 'cExt.c')]
+    )
+]
 
 with open(path.join(here, 'README.md'), encoding='utf-8') as f:
     long_description = f.read()
