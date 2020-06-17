@@ -45,14 +45,12 @@ static char* CitemCheck(PyObject *commandString, int commandStringLength) {
     Py_DECREF(encodedString);
 
     if (pos[0] == 0 && pos[1] == 0){
-        // char string[] = "YES\0";
-        // return string;
-        return 1;
+        char string[] = "YES\0";
+        return string;
     }
     else {
-        // char string[] = "NO\0";
-        // return string;
-        return 0;
+        char string[] = "NO\0";
+        return string;
     }
 }
 
@@ -66,8 +64,7 @@ static PyObject *ClistCheck(PyObject *commandList, int commandListLength) {
         int commandStringLength = PyObject_Length(commandString);
 
         PyObject* pyItem = Py_BuildValue(
-            // "s", CitemCheck(commandString, commandStringLength)
-            "i", CitemCheck(commandString, commandStringLength)
+            "s", CitemCheck(commandString, commandStringLength)
         );
         PyList_SetItem(results, index, pyItem);
     }
