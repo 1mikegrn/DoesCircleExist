@@ -1,0 +1,3 @@
+name: DoesCircleExist-jupyter
+channels:
+  - conda-forge
