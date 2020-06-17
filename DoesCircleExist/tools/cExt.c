@@ -19,7 +19,7 @@ static void changeDir(int* step, char d) {
     }
 }
 
-static char* CitemCheck(PyObject *commandString, int commandStringLength) {
+static int CitemCheck(PyObject *commandString, int commandStringLength) {
 
     int pos[] = {0, 0};
     int step[] = {0, 1};
@@ -45,12 +45,10 @@ static char* CitemCheck(PyObject *commandString, int commandStringLength) {
     Py_DECREF(encodedString);
 
     if (pos[0] == 0 && pos[1] == 0){
-        char string[] = "YES\0";
-        return string;
+        return 1;
     }
     else {
-        char string[] = "NO\0";
-        return string;
+        return 0;
     }
 }
 
@@ -64,7 +62,7 @@ static PyObject *ClistCheck(PyObject *commandList, int commandListLength) {
         int commandStringLength = PyObject_Length(commandString);
 
         PyObject* pyItem = Py_BuildValue(
-            "s", CitemCheck(commandString, commandStringLength)
+            "i", CitemCheck(commandString, commandStringLength)
         );
         PyList_SetItem(results, index, pyItem);
     }
