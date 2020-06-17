@@ -4,7 +4,7 @@ import numpy as np
 def build():
     here = path.abspath(path.dirname(__file__))
 
-    sequences = 3
+    sequences = 10
     letters = 100000
 
     commands = [
