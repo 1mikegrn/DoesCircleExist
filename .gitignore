@@ -1,0 +1,3 @@
+__pycache__
+*.pyd
+DoesCircleExist/tools/_c_setup.py

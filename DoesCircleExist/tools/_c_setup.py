@@ -2,6 +2,8 @@
 to build C files, pass:
 
 python _c_setup.py build_ext --inplace clean --all
+
+this file is only used for testing purposes
 """
 import glob
 from setuptools import setup, Extension, find_packages
