@@ -28,17 +28,22 @@ static int CitemCheck(PyObject *commandString, int commandStringLength) {
         commandString, "UTF-8", "strict"
     );
 
-    char *commandChars = PyBytes_AsString(encodedString);
+    if (encodedString) {
 
-    for (int n = 0; n < 4; n++){
-        for (int i = 0; commandChars[i] != '\0'; i++) {
-            if (commandChars[i] == 'G') {
-                for (int j = 0; j<2; j++) {
-                    pos[j] += step[j];
+        char *commandChars = PyBytes_AsString(encodedString);
+
+        if (commandChars) {
+            for (int n = 0; n < 4; n++){
+                for (int i = 0; commandChars[i] != '\0'; i++) {
+                    if (commandChars[i] == 'G') {
+                        for (int j = 0; j<2; j++) {
+                            pos[j] += step[j];
+                        }
+                    } else {
+                        changeDir(step, commandChars[i]);
+                    }   
                 }
-            } else {
-                changeDir(step, commandChars[i]);
-            }   
+            }
         }
     }
 
@@ -64,6 +69,7 @@ static PyObject *ClistCheck(PyObject *commandList, int commandListLength) {
         PyObject* pyItem = Py_BuildValue(
             "i", CitemCheck(commandString, commandStringLength)
         );
+
         PyList_SetItem(results, index, pyItem);
     }
     Py_DECREF(commandList);
