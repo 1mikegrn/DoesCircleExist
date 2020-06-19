@@ -39,8 +39,12 @@ static int CitemCheck(PyObject *commandString, int commandStringLength) {
                         for (int j = 0; j<2; j++) {
                             pos[j] += step[j];
                         }
-                    } else {
+                    } else if (commandChars[i] == 'L' || commandChars[i] == 'R') {
                         changeDir(step, commandChars[i]);
+                    } else {
+                        // string error, raise exception
+                        Py_DECREF(encodedString);
+                        return -1;
                     }   
                 }
             }
@@ -66,11 +70,20 @@ static PyObject *ClistCheck(PyObject *commandList, int commandListLength) {
         commandString = PyList_GetItem(commandList, index);
         int commandStringLength = PyObject_Length(commandString);
 
-        PyObject* pyItem = Py_BuildValue(
-            "i", CitemCheck(commandString, commandStringLength)
-        );
+        int x = CitemCheck(commandString, commandStringLength);
 
-        PyList_SetItem(results, index, pyItem);
+        if (x == -1) {
+            PyErr_SetString(PyExc_TypeError, "Input strings must be UTF-8" 
+            " encoded and consist strictly of the capital characters G/R/L"
+            );
+            return NULL;
+        } else {
+            PyObject* pyItem = Py_BuildValue(
+                "i", x
+            );
+
+            PyList_SetItem(results, index, pyItem);
+        }
     }
     Py_DECREF(commandList);
     return results;
