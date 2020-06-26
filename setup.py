@@ -6,8 +6,13 @@ here = path.abspath(path.dirname(__file__))
 
 extensions = [
     Extension(
-    'pycees.tools.DoesCircleExist', 
-    [path.join('pycees', 'tools', 'DoesCircleExist.c')]
+        'pycees.tools.DoesCircleExist', 
+        [path.join('pycees', 'tools', 'DoesCircleExist.c')]
+    ),
+
+    Extension(
+        'pycees.tools.quickSort',
+        [path.join('pycees', 'tools', 'quickSort.c')]
     )
 ]
 
@@ -15,9 +20,9 @@ with open(path.join(here, 'README.md'), encoding='utf-8') as f:
     long_description = f.read()
 
 setup(
-    name='DoesCircleExist',
+    name='pycees',
     version='0.0.1',
-    description='Solving a google coding challenge with C extensions',
+    description='playing around with C extensions',
     long_description=long_description,
     author='Michael Green',
     author_email='1mikegrn@gmail.com',
