@@ -6,8 +6,8 @@ here = path.abspath(path.dirname(__file__))
 
 extensions = [
     Extension(
-    'DoesCircleExist.tools.cExt', 
-    [path.join('DoesCircleExist', 'tools', 'cExt.c')]
+    'pycees.tools.DoesCircleExist', 
+    [path.join('pycees', 'tools', 'DoesCircleExist.c')]
     )
 ]
 

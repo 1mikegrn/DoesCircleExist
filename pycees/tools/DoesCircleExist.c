@@ -118,6 +118,6 @@ static struct PyModuleDef DCE = {
     listCheck
 };
 
-PyMODINIT_FUNC PyInit_cExt(void){
+PyMODINIT_FUNC PyInit_DoesCircleExist(void){
     return PyModule_Create(&DCE);
 }

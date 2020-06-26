@@ -1,4 +1,4 @@
-import DoesCircleExist
+import pycees
 from os import path
 import numpy as np
 
@@ -16,7 +16,7 @@ for i in range(1000):
     ''.join([('R', 'G', 'L')[np.random.randint(0, 3)] for _ in range(1000)])
     for _ in range(10)]
 
-    print(DoesCircleExist.listCheck(test_lists))
+    print(pycees.listCheck(test_lists))
 
 
    
